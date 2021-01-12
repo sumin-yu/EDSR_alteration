@@ -32,7 +32,10 @@ class EDSR(nn.Module):
         self.add_mean = common.MeanShift(args.rgb_range, sign=1)
 
         # define head module
-        m_head = [conv(args.n_colors, n_feats, kernel_size)]
+        m_head = [
+			conv(args.n_colors, n_feats, kernel_size),
+		    nn.MaxPool2d(kernel_size=2, stride=2)
+		]
 
         # define body module
         m_body = [
@@ -44,7 +47,7 @@ class EDSR(nn.Module):
 
         # define tail module
         m_tail = [
-            common.Upsampler(conv, scale, n_feats, act=False),
+            common.Upsampler(conv, 2, n_feats, act=False),
             conv(n_feats, args.n_colors, kernel_size)
         ]
 
