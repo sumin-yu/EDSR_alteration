@@ -33,8 +33,8 @@ class EDSR(nn.Module):
 
         # define head module
         m_head = [
-			conv(args.n_colors, n_feats, kernel_size),
-		    nn.MaxPool2d(kernel_size=2, stride=2)    
+			conv(args.n_colors, 4*n_feats, kernel_size),
+		    conv(4*n_feats, n_feats, kernel_size)    
 		]
 
         # define body module
