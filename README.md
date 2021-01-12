@@ -1,2 +1,2 @@
-# EDSR_alteration
+# EDSR_Trans
 EDSR(base), EDSR-upsampling, EDSR+downsampling
